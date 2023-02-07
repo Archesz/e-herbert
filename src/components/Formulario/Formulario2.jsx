@@ -12,9 +12,9 @@ function Formulario2() {
             <span className='formulario-title'>Cadastro</span>
 
             <div className='formulario-tabs'>
-                <div className='formulario-tab active' onClick={() => {setCadastro("Estudante")}}>Estudante</div>
-                <div className='formulario-tab' onClick={() => {setCadastro("Professor")}}>Professor</div>
-                <div className='formulario-tab' onClick={() => {setCadastro("Colaborador")}}>Colaborador</div>
+                <div className='formulario-tab active' id="estudanteForm" onClick={() => {setCadastro("Estudante")}}>Estudante</div>
+                <div className='formulario-tab' id="Form" onClick={() => {setCadastro("Professor")}}>Professor</div>
+                <div className='formulario-tab' id="estudanteForm" onClick={() => {setCadastro("Colaborador")}}>Infraestrutura</div>
             </div>
 
             <Form type={cadastro}/>

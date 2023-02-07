@@ -46,8 +46,8 @@ function getUsersCountTeacher(){
     firebase.database().ref("professores").on("value", (snapshot) => {
         usersCount = snapshot.numChildren() + 1;
     });
-    return usersCount;}
-
+    return usersCount;
+}
 
 function createId() {
     let date = new Date();
@@ -61,13 +61,11 @@ function createId() {
 }
 
 function createIdProfessor(){
-    let date = new Date();
-    let year = date.getFullYear().toString().slice(-2);
     let number = getUsersCountTeacher();
 
     const numberString = number.toString().padStart(4, '0');
 
-    let id = `HSP${year}${numberString}`
+    let id = `HSP${numberString}`
     return id
 }
 
@@ -76,6 +74,8 @@ function cadastrar() {
     let id = createId();
 
     const userData = {
+
+        // Dados Formulário
         id: id,
         nome: document.querySelector("#nome").value,
         email: document.querySelector("#email").value,
@@ -89,18 +89,31 @@ function cadastrar() {
         numero: document.querySelector("#numero").value,
         nascimento: document.querySelector("#nascimento").value,
 
+        // Dados de Desempenho
         desempenho: {
-            "Matematica": 0,
-            "Português": 0,
-            "Quimica": 0,
-            "Fisica": 0,
-            "Biologia": 0,
-            "Geografia": 0,
-            "História": 0,
-            "Sociologia": 0,
-            "Filosofia": 0
-        }
+            "Matematica": {"Tempo_Questao": [], "Nota": 0},
+            "Português": {"Tempo_Questao": [], "Nota": 0},
+            "Quimica": {"Tempo_Questao": [], "Nota": 0},
+            "Fisica": {"Tempo_Questao": [], "Nota": 0},
+            "Biologia": {"Tempo_Questao": [], "Nota": 0},
+            "Geografia": {"Tempo_Questao": [], "Nota": 0},
+            "História": {"Tempo_Questao": [], "Nota": 0},
+            "Sociologia": {"Tempo_Questao": [], "Nota": 0},
+            "Filosofia": {"Tempo_Questao": [], "Nota": 0},
+            "Simulados": 0
+        },
+        
+        // Dados Cursinho
+        sala: "A definir",
 
+        // Dados Socioeconomicos
+        genero: "",
+        etnia: "",
+        escolaridade: "",
+        tipo_escola: "",
+        primeira_opcao: "",
+        acesso_internet: "",
+        renda_media: ""
     };
 
     firebase.database().ref(`usuarios/${id}`).set(userData)
@@ -152,12 +165,12 @@ function Form(props) {
     
                     <div className='form-group'>
                         <label className='form-label'>Nome Completo</label>
-                        <input type="text" placeholder='Ex: João Vitor Souza de Alcantara' required className='input big' id='nome' />
+                        <input type="text" placeholder='Ex: João Vitor Souza de Alcantara' required className='input big' id='nome' autoComplete="off"/>
                     </div>
     
                     <div className='form-group'>
                         <label className='form-label'>Email</label>
-                        <input type="email" placeholder='Ex: cursinhoherbert@gmail.com' required className='input big' id='email' />
+                        <input type="email" placeholder='Ex: cursinhoherbert@gmail.com' required className='input big' id='email' autoComplete="off"/>
                     </div>
     
                 </div>
@@ -166,12 +179,12 @@ function Form(props) {
     
                     <div className='form-group'>
                         <label className='form-label'>CPF</label>
-                        <input type="text" placeholder='Ex: 230.720.428-88' required id="cpf" className='input half' />
+                        <input type="text" placeholder='Ex: 230.720.428-88' required id="cpf" className='input half' autoComplete="off"/>
                     </div>
     
                     <div className='form-group'>
                         <label className='form-label'>RG</label>
-                        <input type="text" placeholder='Ex: 11.222.333-4' required className='input half' id="rg"/>
+                        <input type="text" placeholder='Ex: 11.222.333-4' required className='input half' id="rg" autoComplete="off"/>
                     </div>
     
                     <div className='form-group'>
@@ -185,17 +198,17 @@ function Form(props) {
     
                     <div className='form-group'>
                         <label className='form-label'>CEP</label>
-                        <input type="number" placeholder='Ex: 13060-492' required className='input half' id="cep"/>
+                        <input type="number" placeholder='Ex: 13060-492' required className='input half' id="cep" autoComplete="off"/>
                     </div>
     
                     <div className='form-group'>
                         <label className='form-label'>Nº</label>
-                        <input type="number" placeholder='Ex: 17' required className='input small' id="numero"/>
+                        <input type="number" placeholder='Ex: 17' required className='input small' id="numero" autoComplete="off"/>
                     </div>
     
                     <div className='form-group'>
                         <label className='form-label'>Celular</label>
-                        <input type="text" placeholder='Ex: (19) 99539-7660' required className='input half' id="celular"/>
+                        <input type="text" placeholder='Ex: (19) 99539-7660' required className='input half' id="celular" autoComplete="off"/>
                     </div>
     
                     <div className='form-group'>
@@ -218,6 +231,7 @@ function Form(props) {
                     <div className='form-group'>
                         <label className='form-label'>Periodo</label>
                         <select className='select half' id="periodo">
+                            <option value="">A definir</option>
                             <option value="Manhã">Manhã</option>
                             <option value="Tarde">Tarde</option>
                             <option value="Noite">Noite</option>

@@ -134,15 +134,15 @@ function Form(props) {
     
             // Dados de Desempenho
             desempenho: {
-                "Matematica": { "Tempo_Questao": [], "Nota": 0 },
-                "Português": { "Tempo_Questao": [], "Nota": 0 },
-                "Quimica": { "Tempo_Questao": [], "Nota": 0 },
-                "Fisica": { "Tempo_Questao": [], "Nota": 0 },
-                "Biologia": { "Tempo_Questao": [], "Nota": 0 },
-                "Geografia": { "Tempo_Questao": [], "Nota": 0 },
-                "História": { "Tempo_Questao": [], "Nota": 0 },
-                "Sociologia": { "Tempo_Questao": [], "Nota": 0 },
-                "Filosofia": { "Tempo_Questao": [], "Nota": 0 },
+                "Matematica": { "Tempo_Questao": [], "Nota": 0, "Nome": "Matematica", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "Português": { "Tempo_Questao": [], "Nota": 0, "Nome": "Português", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "Quimica": { "Tempo_Questao": [], "Nota": 0, "Nome": "Quimica", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "Fisica": { "Tempo_Questao": [], "Nota": 0, "Nome": "Fisica", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "Biologia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Biologia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "Geografia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Geografia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "História": { "Tempo_Questao": [], "Nota": 0, "Nome": "História", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "Sociologia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Sociologia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
+                "Filosofia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Filosofia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
                 "Simulados": 0
             },
     
@@ -260,6 +260,7 @@ function Form(props) {
                     <div className='form-group'>
                         <label className='form-label'>Curso</label>
                         <select className='select half' id="curso">
+                            <option value="A definir">A definir</option>
                             <option value="Vestibular">Pré-Vestibular</option>
                             <option value="Técnico">Pré-Tecnico</option>
                         </select>

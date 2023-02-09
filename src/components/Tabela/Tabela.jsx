@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Tabela.scss'
 
 import { BsFilter, BsThreeDotsVertical } from 'react-icons/bs'
+import Desempenho from './Desempenho';
 
 function formatCPF(cpf) {
     // Remover pontos e hífen
@@ -67,15 +68,26 @@ function formatCel(cel) {
     return cel;
 }
 
+async function getAddressFromCEP(cep) {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await response.json();
+
+    if (data.erro) {
+        throw new Error(`CEP inválido: ${cep}`);
+    }
+
+    return data.logradouro, data.bairro
+}
+
 function Tabela(props) {
 
     const [usuarios, setUsuarios] = useState([]);
     const [selectedData, setSelectedData] = useState(null);
     const [filter, setFilter] = useState("")
 
-    function search(){
+    function search() {
         let value = document.querySelector("#filter").value;
-        console.log(value)
+        console.log(value);
         setFilter(value);
     }
 
@@ -118,6 +130,16 @@ function Tabela(props) {
         });
     }, []);
 
+    function removerUsuario(id) {
+        props.base.database().ref('usuarios/' + id).remove()
+            .then(() => {
+                console.log('Usuário removido com sucesso');
+            })
+            .catch((error) => {
+                console.error('Erro ao remover usuário: ', error);
+            });
+    }
+
     return (
         <div className='table-container'>
 
@@ -134,14 +156,14 @@ function Tabela(props) {
                     <BsFilter className='btn-icon' />
                     <span className='btn-span'>Filtro</span>
                 </button>
-                <input type="text" className='input-filter' id="filter" placeholder='Busque pelo dado solicitado.' onChange={search}/>
+                <input type="text" className='input-filter' id="filter" placeholder='Busque pelo dado solicitado.' onChange={search} />
 
                 <div className='table-filters noview' id="filters">
                     <span className='filter-title'>Ordenar por: </span>
 
                     <div className='filter-option'>
                         <span className='option-label'>Nome</span>
-                        <input type="radio" className='option-radio'/>
+                        <input type="radio" className='option-radio' />
                     </div>
 
                     <div className='filter-option'>
@@ -181,8 +203,8 @@ function Tabela(props) {
                 </thead>
                 <tbody className='table-body'>
                     {usuarios.map((usuario) => {
-                        
-                        if(usuario["nome"].toUpperCase().includes(filter.toUpperCase())){
+
+                        if (usuario["nome"].toUpperCase().includes(filter.toUpperCase())) {
 
                             return (
                                 <tr onClick={() => { handleRowClick(usuario) }}>
@@ -193,39 +215,39 @@ function Tabela(props) {
                                         <span className='email'>{usuario["email"]}</span>
                                     </td>
                                     <td className='cpf-col'>{formatCPF(usuario["cpf"])}</td>
-    
+
                                     <td className='curso-col'>
                                         <span className='curso'>{usuario["curso"]}</span>
                                         <span className='periodo'>{usuario["periodo"]}</span>
                                     </td>
-    
+
                                     <td className='nascimento-col'>
                                         <div className='nascimento-div'>
                                             <span className='date'>{formatDate(usuario["nascimento"])}</span>
                                             <span className='age'>{calculateAge(usuario["nascimento"])} Anos</span>
                                         </div>
                                     </td>
-    
+
                                     <td className='cep-col'>
                                         {formatCEP(usuario["cep"])}
                                     </td>
-    
+
                                     <td className='telefone-col'>
                                         <span className='celular'>{formatCel(usuario["celular"])}</span>
                                         <span className='telefone'></span>
                                     </td>
-    
+
                                     <td className='status-col'>
                                         <div className='status-div'>
                                             <div className='status-circle' />
                                             <span>Ativo</span>
                                         </div>
                                     </td>
-    
-                                    <td className='option-col' id={usuario["id"]}><BsThreeDotsVertical /></td>
+
+                                    <td className='option-col'><BsThreeDotsVertical /></td>
                                 </tr>
                             )
-                            
+
                         }
                     })}
                 </tbody>
@@ -236,6 +258,9 @@ function Tabela(props) {
                     name={selectedData.nome}
                     age={selectedData.nascimento}
                     cpf={selectedData.cpf}
+                    cep={selectedData.cep}
+                    rg={selectedData.rg}
+                    desempenho={selectedData["desempenho"]}
                     onClose={() => setSelectedData(null)}
                 />
             )}
@@ -246,18 +271,48 @@ function Tabela(props) {
 
 export default Tabela
 
-function Modal({ name, age, cpf, onClose }) {
+function Modal(props) {
+
+    let disciplinas = Object.values(props.desempenho)
+    console.log(disciplinas)
     return (
         <div className="modal-overlay">
-            <h2>Informações da pessoa</h2>
-            <p>Nome: {name}</p>
-            <p>Idade: {age}</p>
-            <p>CPF: {cpf}</p>
+            <div className='modal-header'>
+                <h2>Dados</h2>
+                <button className='btn-close' onClick={props.onClose}>X</button>
+            </div>
+
+            <div className='area'>
+
+                <div className='row'>
+                    <span>Nome: {props.name}</span>
+                    <span>Nascimento: {props.age}</span>
+                    <span>RG: {props.rg}</span>
+                    <span>CPF: {props.cpf}</span>
+                    <span>CEP: {props.cep}</span>
+                </div>
+
+                <div className='row'>
+                    <span>Gênero: {props.genero}</span>
+                    <span>Etnia: {props.etnia}</span>
+                    <span>Primeira Opção: {props.primeira_opcao}</span>
+                    <span>Segunda Opção: {props.segunda_opcao}</span>
+                    <span>Status: Cursando</span>
+                </div>
+
+            </div>
 
             <span>Desempenho</span>
-            <span>Matemática: </span>
-            <button onClick={onClose}>Fechar</button>
+            <div className='desempenhos'>
+                {disciplinas.map((disciplina) => {
+                    return (
+                        <Desempenho name={disciplina["Nome"]} nivel={disciplina["Nivel"]} simulados={disciplina["Nota_simulado"]} herbertech={disciplina["Nota_herbert"]} />
+                    )
+                })}
+
+                <span className='desempenho-label'>Frequência: 100%</span>
+            </div>
         </div>
-        
+
     );
 }

@@ -2,64 +2,36 @@ import React from 'react'
 import './Formulario.scss'
 
 import jsPDF from 'jspdf';
-import firebase from "firebase/compat/app";
-import "firebase/compat/database";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDZc7R_-lLK9xKfa4_610JI7Izk4b831Xc",
-    authDomain: "crudherbert.firebaseapp.com",
-    databaseURL: "https://crudherbert-default-rtdb.firebaseio.com",
-    projectId: "crudherbert",
-    storageBucket: "crudherbert.appspot.com",
-    messagingSenderId: "382234945560",
-    appId: "1:382234945560:web:e0e3b7df6c372bc513fb6d",
-    measurementId: "G-RBB092Q5HF"
-};
-
-firebase.initializeApp(firebaseConfig);
 
 /* Funções Auxiliar */
 
-function generatePDF(){
-
-    let nome = document.querySelector("#nome").value
-    let nascimento = document.querySelector("#nascimento").value
-    let rg = document.querySelector("#rg").value
-    let cpf = document.querySelector("#cpf").value
-    let email = document.querySelector("#email").value
-    let cep = document.querySelector("#cep").value
-    let numero = document.querySelector("#numero").value
-    let telefone = document.querySelector("#telefone").value
-    let celular = document.querySelector("#celular").value
-    let curso = document.querySelector("#curso").value
-    let periodo = document.querySelector("#periodo").value
-
+function generatePDF(nome, nascimento, rg, cpf, email, cep, numero, telefone, celular, curso, periodo){
 
     try {
         const doc = new jsPDF();
         let img = new Image();
         // Write in document
         // doc.addImage('./logo.PNG', 'PNG', 15, 15, 50, 50);
-        doc.setFontSize(13)
+        doc.setFontSize(10)
         doc.text(`Termo de compromisso – 2023 | ____ Campinas ___ de Janeiro de 2023`, 15, 10);
 
-        doc.setFontSize(13)
+        doc.setFontSize(12)
         doc.setFont('times');
+        
+        doc.text(`Nome:`, 15, 20);
+        doc.text(`${nome}`, 25, 20);
+        
+        doc.text('Email:', 120, 20);
+        doc.text(`${email}`, 135, 20);
 
-        doc.text(`Nome:`, 15, 40);
-        doc.text(`${nome}`, 30, 40);
+        doc.text(`RG:`, 15, 25);
+        doc.text(`${rg}`, 25, 25);
 
-        doc.text(`Data de Nascimento:`, 15, 115);
-        doc.text(`${nascimento}`, 145, 115);
+        doc.text(`CPF:`, 70, 25);
+        doc.text(`${cpf}`, 85, 25);
 
-        doc.text(`RG:`, 280, 115);
-        doc.text(`${rg}`, 305, 115);
-
-        doc.text(`CPF:`, 15, 135);
-        doc.text(`${cpf}`, 55, 135);
-
-        doc.text(`Email:`, 280, 135);
-        doc.text(`${email}`, 320, 135);
+        doc.text(`Data de Nascimento:`, 120, 25);
+        doc.text(`${nascimento}`, 160, 25);
 
         doc.text(`CEP:`, 280, 155);
         doc.text(`${cep} - Nº ${numero}`, 320, 155);
@@ -83,134 +55,6 @@ function generatePDF(){
     }
 }
 
-function getUsersCount() {
-    let usersCount = 0;
-    firebase.database().ref("usuarios").on("value", (snapshot) => {
-        usersCount = snapshot.numChildren() + 1;
-    });
-    return usersCount;
-}
-
-function getUsersCountTeacher() {
-    let usersCount = 0;
-    firebase.database().ref("professores").on("value", (snapshot) => {
-        usersCount = snapshot.numChildren() + 1;
-    });
-    return usersCount;
-}
-
-function createId() {
-    let date = new Date();
-    let year = date.getFullYear().toString().slice(-2);
-    let number = getUsersCount();
-
-    const numberString = number.toString().padStart(4, '0');
-
-    let id = `HS${year}${numberString}`
-    return id
-}
-
-function createIdProfessor() {
-    let number = getUsersCountTeacher();
-
-    const numberString = number.toString().padStart(4, '0');
-
-    let id = `HSP${numberString}`
-    return id
-}
-
-function cadastrar() {
-
-    let id = createId();
-
-    let nome = document.querySelector("#nome").value
-    let nascimento = document.querySelector("#nascimento").value
-    let rg = document.querySelector("#rg").value
-    let cpf = document.querySelector("#cpf").value
-    let email = document.querySelector("#email").value
-    let cep = document.querySelector("#cep").value
-    let numero = document.querySelector("#numero").value
-    let telefone = document.querySelector("#telefone").value
-    let celular = document.querySelector("#celular").value
-    let curso = document.querySelector("#curso").value
-    let periodo = document.querySelector("#periodo").value
-
-    const userData = {
-
-        // Dados Formulário
-        id: id,
-        nome: nome,
-        email: email,
-        celular: celular,
-        telefone: telefone,
-        cpf: cpf,
-        rg: rg,
-        curso: curso,
-        periodo: periodo,
-        cep: cep,
-        numero: numero,
-        nascimento: nascimento,
-
-        // Dados de Desempenho
-        desempenho: {
-            "Matematica": { "Tempo_Questao": [], "Nota": 0 },
-            "Português": { "Tempo_Questao": [], "Nota": 0 },
-            "Quimica": { "Tempo_Questao": [], "Nota": 0 },
-            "Fisica": { "Tempo_Questao": [], "Nota": 0 },
-            "Biologia": { "Tempo_Questao": [], "Nota": 0 },
-            "Geografia": { "Tempo_Questao": [], "Nota": 0 },
-            "História": { "Tempo_Questao": [], "Nota": 0 },
-            "Sociologia": { "Tempo_Questao": [], "Nota": 0 },
-            "Filosofia": { "Tempo_Questao": [], "Nota": 0 },
-            "Simulados": 0
-        },
-
-        // Dados Cursinho
-        sala: "A definir",
-
-        // Dados Socioeconomicos
-        genero: "",
-        etnia: "",
-        escolaridade: "",
-        tipo_escola: "",
-        primeira_opcao: "",
-        acesso_internet: "",
-        renda_media: ""
-    };
-
-    firebase.database().ref(`usuarios/${id}`).set(userData)
-        .then(() => {
-            console.log("Usuário adicionado com sucesso.")
-        })
-        .catch((error) => {
-            console.log("Erro ao adicionar usuário: ", error)
-        })
-}
-
-function cadastrarProfessor() {
-    let id = createIdProfessor();
-
-    const userData = {
-        id: id,
-        nome: document.querySelector("#nome").value,
-        email: document.querySelector("#email").value,
-        celular: document.querySelector("#celular").value,
-        cpf: document.querySelector("#cpf").value,
-        curso: document.querySelector("#cursoFaculdade").value,
-        periodo: document.querySelector("#disciplina").value,
-        nascimento: document.querySelector("#nascimento").value,
-        bolsista: "Não"
-    };
-
-    firebase.database().ref(`professores/${id}`).set(userData)
-        .then(() => {
-            console.log("Usuário adicionado com sucesso.")
-        })
-        .catch((error) => {
-            console.log("Erro ao adicionar usuário: ", error)
-        })
-}
-
 /* Validação e Ajustes nos Campos */
 
 
@@ -218,6 +62,137 @@ function cadastrarProfessor() {
 /* Validação e Ajustes nos Campos */
 
 function Form(props) {
+
+    function getUsersCount() {
+        let usersCount = 0;
+        props.base.database().ref("usuarios").on("value", (snapshot) => {
+            usersCount = snapshot.numChildren() + 1;
+        });
+        return usersCount;
+    }
+    
+    function getUsersCountTeacher() {
+        let usersCount = 0;
+        props.base.database().ref("professores").on("value", (snapshot) => {
+            usersCount = snapshot.numChildren() + 1;
+        });
+        return usersCount;
+    }
+
+    function createId() {
+        let date = new Date();
+        let year = date.getFullYear().toString().slice(-2);
+        let number = getUsersCount();
+    
+        const numberString = number.toString().padStart(4, '0');
+    
+        let id = `HS${year}${numberString}`
+        return id
+    }
+    
+    function createIdProfessor() {
+        let number = getUsersCountTeacher();
+    
+        const numberString = number.toString().padStart(4, '0');
+    
+        let id = `HSP${numberString}`
+        return id
+    }
+    
+
+    function cadastrar() {
+
+        let id = createId();
+    
+        let nome = document.querySelector("#nome").value
+        let nascimento = document.querySelector("#nascimento").value
+        let rg = document.querySelector("#rg").value
+        let cpf = document.querySelector("#cpf").value
+        let email = document.querySelector("#email").value
+        let cep = document.querySelector("#cep").value
+        let numero = document.querySelector("#numero").value
+        let telefone = document.querySelector("#telefone").value
+        let celular = document.querySelector("#celular").value
+        let curso = document.querySelector("#curso").value
+        let periodo = document.querySelector("#periodo").value
+    
+        const userData = {
+    
+            // Dados Formulário
+            id: id,
+            nome: nome,
+            email: email,
+            celular: celular,
+            telefone: telefone,
+            cpf: cpf,
+            rg: rg,
+            curso: curso,
+            periodo: periodo,
+            cep: cep,
+            numero: numero,
+            nascimento: nascimento,
+    
+            // Dados de Desempenho
+            desempenho: {
+                "Matematica": { "Tempo_Questao": [], "Nota": 0 },
+                "Português": { "Tempo_Questao": [], "Nota": 0 },
+                "Quimica": { "Tempo_Questao": [], "Nota": 0 },
+                "Fisica": { "Tempo_Questao": [], "Nota": 0 },
+                "Biologia": { "Tempo_Questao": [], "Nota": 0 },
+                "Geografia": { "Tempo_Questao": [], "Nota": 0 },
+                "História": { "Tempo_Questao": [], "Nota": 0 },
+                "Sociologia": { "Tempo_Questao": [], "Nota": 0 },
+                "Filosofia": { "Tempo_Questao": [], "Nota": 0 },
+                "Simulados": 0
+            },
+    
+            // Dados Cursinho
+            sala: "A definir",
+    
+            // Dados Socioeconomicos
+            genero: "",
+            etnia: "",
+            escolaridade: "",
+            tipo_escola: "",
+            primeira_opcao: "",
+            acesso_internet: "",
+            renda_media: ""
+        };
+    
+        props.base.database().ref(`usuarios/${id}`).set(userData)
+            .then(() => {
+                console.log("Usuário adicionado com sucesso.")
+            })
+            .catch((error) => {
+                console.log("Erro ao adicionar usuário: ", error)
+            })
+    
+        generatePDF(nome, nascimento, rg, cpf, email, cep, numero, telefone, celular, curso, periodo);
+    }
+    
+    function cadastrarProfessor() {
+        let id = createIdProfessor();
+    
+        const userData = {
+            id: id,
+            nome: document.querySelector("#nome").value,
+            email: document.querySelector("#email").value,
+            celular: document.querySelector("#celular").value,
+            cpf: document.querySelector("#cpf").value,
+            curso: document.querySelector("#cursoFaculdade").value,
+            periodo: document.querySelector("#disciplina").value,
+            nascimento: document.querySelector("#nascimento").value,
+            bolsista: "Não"
+        };
+    
+        props.base.database().ref(`professores/${id}`).set(userData)
+            .then(() => {
+                console.log("Usuário adicionado com sucesso.")
+            })
+            .catch((error) => {
+                console.log("Erro ao adicionar usuário: ", error)
+            })
+    }
 
     if (props.type === "Estudante") {
         return (
@@ -306,7 +281,6 @@ function Form(props) {
                 <div className='btn-rows'>
                     <button className='btn cadastrar' onClick={cadastrar} type="button">Cadastrar</button>
                     <button className='btn cancelar'>Cancelar</button>  
-                    <button className='btn termo' type="button" onClick={generatePDF}>Termo</button>
                 </div>
 
             </form>

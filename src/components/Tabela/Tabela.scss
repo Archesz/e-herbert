@@ -1,9 +1,368 @@
 .table-container{
     width: 100%;
-    height: 100%;
-    padding: 20px;
+    height: auto;
+    min-height: 90vh;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 60px;
+    .table-tabs{
+        width: 100%;
+        border-bottom: 1px solid #C6C2DE;
+        padding-bottom: 12px;
+
+        .tab{
+            margin-right: 30px;
+            font-size: medium;
+            color: #6E6893;
+            font-size: 14px;
+            padding-bottom: 12px;
+            cursor: pointer;
+
+            &:hover{
+                transition: .2s;
+                color: #25213B;
+                border-bottom: 2px solid #25213B;
+            }
+        }
+
+        .active{
+            color: #25213B;
+            border-bottom: 2px solid #25213B;
+        }
+    }
+
+    .table-filter{
+        width: 100%;
+        height: 70px;
+        background-color: #080808;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        padding: 0px 20px;
+        margin-top: 20px;
+        align-items: center;
+
+        .btn-filter{
+            width: 90px;
+            height: 40px;
+            border-radius: 6px;
+            background: none;
+            border: 2px solid #C6C2DE;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            cursor: pointer;
+            margin-right: 20px;
+
+            &:hover{
+                transition: .4s;
+                background-color: #C6C2DE;
+                box-shadow: 0px 0px 6px #6E6893;
+
+                .btn-icon{
+                    transition: .4s;
+                    color: #080808;
+                }
+
+                .btn-span{
+                    transition: .4s;
+                    color: #080808;
+                }
+            }
+
+            .btn-icon{
+                color: #C6C2DE;
+                font-weight: bolder;
+                font-size: 18px;
+            }
+
+            .btn-span{
+                color: #C6C2DE;
+                font-weight: bolder;
+                font-size: 16px;
+            }
+        }
+
+        .input-filter{
+            width: 400px;
+            height: 40px;
+            border-radius: 6px;
+            border: none;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .table-filters{
+            position: absolute;
+            top: 150px;
+            width: 240px;
+            height: 340px;
+            background-color: white;
+            border: 2px solid #F2F0F9;
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            display: none;
+
+            .filter-title{
+                font-size: 14px;
+                color: #6E6893;
+            }
+
+            .filter-option{
+                height: 20px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                cursor: pointer;
+
+                &:hover{
+                    transition: .4s;
+                    background-color: #F2F0F9;
+                    border-radius: 4px;
+                    padding: 4px;
+                }
+
+                .option-label{
+                    font-size: 14px;
+                    color: #25213B;
+                }
+
+                .option-radio{
+                    height: 14px;
+                    width: 14px;
+                }
+            }
+        }
+    }
 
     .table{
-        width: 100%;
+        height: auto;
+        min-height: 60px;
+        background-color: white;
+        border: none;
+        border-collapse: collapse;
+
+        .table-header{
+            height: 45px;
+            width: 100%;
+            background-color: #F4F2FF;
+            border-top: 1px solid #6E6893;
+            border-bottom: 1px solid #6E6893;
+            color: #6E6893;
+            font-size: 14px;
+            font-weight: bold;
+
+            td{
+                padding-left: 20px;
+
+                &:first-of-type{
+                    width: 60px;
+                }
+            }
+
+            .table-square{
+                width: 20px;
+                height: 20px;
+                border: 2px solid #6E6893;
+                border-radius: 4px;
+            }
+        }
+
+        .table-body{
+            width: 100%;
+            background-color: #FFFFFF;
+            height: auto;
+            cursor: pointer;
+
+            tr{
+                height: 60px;
+                    &:hover{
+                        transition: .4s;
+                        background-color: #d8d1ff;
+                    }
+
+                td{
+                    padding-left: 20px;
+
+                }
+            
+                .table-square{
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid #6E6893;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+
+}
+
+.square-col{
+    width: 70px;
+}
+
+.id-col{
+    width: 120px;
+    color: #6E6893;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.name-col{
+    width: 300px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    justify-content: center;
+
+    .name{
+        font-size: 14px;
+        color: #25213B;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .email{
+        font-size: 12px;
+        color: #6E6893;
     }
 }
+
+.cpf-col{
+    width: 140px;
+    font-size: 14px;
+    color: #6E6893;
+}
+
+.curso-col{
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    justify-content: center;
+
+    .curso{
+        font-size: 16px;
+        color: #6E6893;
+        font-weight: bold;
+    }
+
+    .periodo{
+        font-size: 14px;
+        color: #C6C2DE;
+        font-weight: bolder;
+    }
+}
+
+.nascimento-col{
+    height: 60px;
+    width: 160px;
+
+    .nascimento-div{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+    
+        .date{
+            font-size: 14px;
+            color: #6E6893;
+            font-weight: bold;
+        }
+
+        .age{
+            font-size: 14px;
+            color: #C6C2DE;
+            font-weight: bolder;
+        }
+    }
+}
+
+.telefone-col{
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #6E6893;
+}
+
+.cep-col{
+    font-weight: bold;
+    font-size: 14px;
+    color: #6E6893;
+    width: 140px;
+}
+
+.status-col{
+    width: 140px;
+
+    .status-div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .status-circle{
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #2AC769;
+            margin-right: 6px;
+        }
+        
+        span{
+            font-size: 14px;
+            font-weight: bold;
+            color: #6E6893;
+        }
+    }
+}
+
+.option-col{
+    width: 5%;
+}
+
+
+.modal-overlay{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); // Inicie com uma escala de 0
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px black;
+    
+    // Adicione a animação de expansão
+    animation: modal-expand 0.5s ease-out;
+    animation-fill-mode: forwards; // Mantenha o estilo final após a animação ter sido concluída
+}
+
+@keyframes modal-expand {
+    from {
+      transform: translate(-50%, -50%) scale(0);
+      width: 0;
+      height: 0;
+    }
+  
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      width: 90%;
+      height: 90%;
+    }
+  }

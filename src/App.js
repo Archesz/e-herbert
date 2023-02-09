@@ -7,6 +7,9 @@ import './styles/global.scss'
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
+import Tabela from './components/Tabela/Tabela';
+import Menu from './components/Menu/Menu';
+import Formulario2 from './components/Formulario/Formulario2';
 
 
 const firebaseConfig = {
@@ -26,7 +29,8 @@ function App() {
   return (
     <div className="container">
         
-        <Formulario />
+        <Formulario2 />
+        <Tabela base={firebase}/>
 
     </div>
   );

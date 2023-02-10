@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Menu from '../Menu/Menu'
 import Form from './Form'
 import './Formulario.scss'
 
@@ -8,7 +9,7 @@ function Formulario2(props) {
 
     return (
         <div className='formulario-container'>
-            
+            <Menu />
             <span className='formulario-title'>Cadastro</span>
 
             <div className='formulario-tabs'>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './styles/global.scss'
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
@@ -7,6 +8,9 @@ import "firebase/compat/database";
 import Menu from './components/Menu/Menu';
 import Formulario2 from './components/Formulario/Formulario2';
 import Tabela from './components/Tabela/Tabela';
+
+import Home from './pages/Home';
+
 
 import {
   createBrowserRouter,
@@ -29,6 +33,10 @@ firebase.initializeApp(firebaseConfig);
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Home />
+  },
+  {
+    path: "/plataforma",
     element: <Menu />
   },
   {
@@ -44,7 +52,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Menu />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

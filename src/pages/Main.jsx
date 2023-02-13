@@ -1,5 +1,8 @@
 import React from 'react'
+import Navbar from '../components/Navbar/Navbar';
+import View from '../components/View/View';
 
+import '../styles/main.scss'
 function Main() {
 
     const objetoSerializado = localStorage.getItem("HerbertData");
@@ -8,8 +11,12 @@ function Main() {
     const objeto = JSON.parse(objetoSerializado)[0];
     console.log(objeto)
     return (
-        <div>
-            <span>{objeto.nome}</span>
+        <div className='main-container'>
+            
+            <Navbar />
+
+            <View data={objeto} page="Home"/>
+
         </div>
     )
 }

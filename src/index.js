@@ -9,7 +9,7 @@ import Menu from './components/Menu/Menu';
 import Formulario2 from './components/Formulario/Formulario2';
 import Tabela from './components/Tabela/Tabela';
 
-import Home from './pages/Home';
+import Login from './pages/Login';
 
 
 import {
@@ -34,7 +34,7 @@ firebase.initializeApp(firebaseConfig);
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home base={firebase}/>
+    element: <Login base={firebase}/>
   },
   {
     path: "/plataforma",

@@ -2,13 +2,13 @@ import React from 'react'
 import './Desempenho.scss'
 
 function getColor(name){
-    if(name == "Matematica"){
+    if(name === "Matematica"){
         return "#D64933"
-    } else if(name == "Biologia" || name == "Fisica" || name == "Quimica"){
+    } else if(name === "Biologia" || name === "Fisica" || name === "Quimica"){
         return "#0C7C59"
-    } else if(name == "Português" || name == "Literatura"){
+    } else if(name === "Português" || name === "Literatura"){
         return "#58A4B0"
-    } else if(name == "Geografia" || name == "Sociologia" || name == "Filosofia"){
+    } else if(name === "Geografia" || name === "Sociologia" || name === "Filosofia"){
         return "#F6AA1C"
     }
 }

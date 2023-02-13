@@ -1,73 +1,40 @@
-import React, { useContext, useEffect, useState} from 'react'
+import React from 'react'
 import '../styles/home.scss'
 
-// Contexto 
-
-function acess(){
-    let user = document.querySelector("#login-user").value
-    let password = document.querySelector("#login-password").value    
-
-    if(user == "Herbertech" && password == "admherbert"){
-        window.location.assign('/plataforma')
-    } else{
-        alert("Login ou Senhas incorretas.")
-    }
-}
+import {AiOutlineNotification} from 'react-icons/ai'
+import {BiMessageRounded} from 'react-icons/bi'
+import News from '../components/News/News'
 
 function Home(props) {
 
-    const [data, setData] = useState({})
-
-    function login(){
-
-        // Recebendo as entradas
-        let user = document.querySelector("#login-user").value
-        let password = document.querySelector("#login-password").value   
-        let flag = 0;
-        // Acessando o banco de dados
-        const usuariosRef = props.base.database().ref("usuarios");
-
-        // Buscando conta
-        usuariosRef.on("value", (snapshot) => {
-            const usuarios = snapshot.val();   
-            const data = []
-            for(let key in usuarios){
-                if(usuarios[key].id == user && usuarios[key].senha == password){
-                    data.push(usuarios[key]);
-                    flag = 1;
-                } 
-            }
-            setData(data);
-        });
-
-        if(flag == 0){
-            alert("Conta não encontrada.")
-        } else if(flag == 1){            
-            localStorage.setItem("HerbertData", JSON.stringify(data));
-
-            window.location.assign("/main")
-        }
-
-
-    }
+    let user = props.user
 
     return (
+
         <div className='home-container'>
-            
-            <div className='form-login'>
 
-                <span className='form-title'>Login</span>
-                
-                <div className='form-inputs'>
-                    <input placeholder='Username' type="text" className='input' id="login-user"/>
-                    <input placeholder='Senha' type="password" className='input' id="login-password"/>
+            <div className='home-header'>
+
+                <div className='header-welcome'>
+                    <h2 className='home-title'>Olá, {user.nome}</h2>
+                    <span>"Não há vantagem alguma em viver a vida correndo."</span>
+
+                </div>  
+
+                <div className='header-items'>
+                    <AiOutlineNotification className='header-icon'/>
+                    <BiMessageRounded className='header-icon'/>
+                    
+                    <div className='avatar'></div>
+
                 </div>
-
-                <button className='btn-login' onClick={login}>Acessar</button>
 
             </div>
 
+            <News />
+
         </div>
+
     )
 }
 

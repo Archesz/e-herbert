@@ -90,11 +90,7 @@ function Tabela(props) {
         setSelectedData(selectedRow);
         console.log(selectedData)
     };
-
-    const handleClose = () => {
-        setSelectedData(null);
-    };
-
+    
     useEffect(() => {
         const usuariosRef = props.base.database().ref("usuarios");
         usuariosRef.on("value", (snapshot) => {
@@ -128,7 +124,7 @@ function Tabela(props) {
             console.log(usuariosArray)
             setUsuarios(usuariosArray);
         });
-    }, []);
+    });
 
     return (
         <div className='table-container'>
@@ -258,8 +254,9 @@ function Tabela(props) {
                                     </td>
                                 </tr>
                             )
-
+                        
                         }
+                        return 0
                     })}
                 </tbody>
             </table>
@@ -310,7 +307,7 @@ function Modal(props) {
     }
 
     function confirmDelete(id){
-        if(window.confirm(`Tem certeza que deseja deletar ${id}?` == true)){
+        if(window.confirm(`Tem certeza que deseja deletar ${id}?` === true)){
             removerUsuario(id);
             window.location.reload();
         } else{
@@ -321,7 +318,7 @@ function Modal(props) {
     function editData(id, desempenho, etnia, genero, tipo, internet, curso, periodo, sala, opcao, status){
         let fields = ["name", "email", "cpf", "rg", "cep", "numero", "celular", "universidade"]
 
-        for(let i = 0; i != fields.length; i++){
+        for(let i = 0; i !== fields.length; i++){
             let value = document.querySelector(`#modal-${fields[i]}`)
             let input = document.createElement("input");
             input.setAttribute("id", `modal-${fields[i]}`)
@@ -329,28 +326,6 @@ function Modal(props) {
             input.value = value.innerText;
 
             value.parentNode.replaceChild(input, value);
-        }
-
-        let values = {
-            id: id,
-            nome: document.querySelector(`#modal-name`),
-            email: document.querySelector(`#modal-email`),
-            celular: document.querySelector(`#modal-celular`),
-            cpf: document.querySelector(`#modal-cpf`),
-            rg: document.querySelector(`#modal-rg`),
-            cep: document.querySelector(`#modal-cep`),
-            numero: document.querySelector(`#modal-numero`),
-
-            desempenho: desempenho,
-            etnia: etnia,
-            genero: genero,
-            tipo_escola: tipo,
-            internet: internet,
-            curso: curso,
-            periodo: periodo,
-            sala: sala,
-            opcao: opcao,
-            status: status
         }
     }
 

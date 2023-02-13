@@ -1,64 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Formulario.scss'
 
-import jsPDF from 'jspdf';
-
-/* Funções Auxiliar */
-
-function generatePDF(nome, nascimento, rg, cpf, email, cep, numero, telefone, celular, curso, periodo){
-
-    try {
-        const doc = new jsPDF();
-        let img = new Image();
-        // Write in document
-        // doc.addImage('./logo.PNG', 'PNG', 15, 15, 50, 50);
-        doc.setFontSize(10)
-        doc.text(`Termo de compromisso – 2023 | ____ Campinas ___ de Janeiro de 2023`, 15, 10);
-
-        doc.setFontSize(12)
-        doc.setFont('times');
-        
-        doc.text(`Nome:`, 15, 20);
-        doc.text(`${nome}`, 25, 20);
-        
-        doc.text('Email:', 120, 20);
-        doc.text(`${email}`, 135, 20);
-
-        doc.text(`RG:`, 15, 25);
-        doc.text(`${rg}`, 25, 25);
-
-        doc.text(`CPF:`, 70, 25);
-        doc.text(`${cpf}`, 85, 25);
-
-        doc.text(`Data de Nascimento:`, 120, 25);
-        doc.text(`${nascimento}`, 160, 25);
-
-        doc.text(`CEP:`, 280, 155);
-        doc.text(`${cep} - Nº ${numero}`, 320, 155);
-
-        doc.text(`Curso:`, 15, 175);
-        doc.text(`${curso}`, 70, 175);
-
-        doc.text(`Periodo:`, 15, 195);
-        doc.text(`${periodo}`, 70, 195);
-
-        doc.text(`Cel:`, 280, 195);
-        doc.text(`${celular}`, 305, 195);
-
-        doc.text(`Cel:`, 280, 195);
-        doc.text(`${telefone}`, 305, 195);
-
-        doc.save('teste-projeto-herbert.pdf');
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-/* Validação e Ajustes nos Campos */
-
-
-
 /* Validação e Ajustes nos Campos */
 
 function Form(props) {

@@ -16,6 +16,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Main from './pages/Main';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDZc7R_-lLK9xKfa4_610JI7Izk4b831Xc",
@@ -33,7 +34,7 @@ firebase.initializeApp(firebaseConfig);
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Home base={firebase}/>
   },
   {
     path: "/plataforma",
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/tabela",
     element: <Tabela base={firebase}/>
+  },
+  {
+    path: "/main",
+    element: <Main base={firebase}/>
   }
 ]);
 

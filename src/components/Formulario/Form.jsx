@@ -139,7 +139,10 @@ function Form(props) {
             primeira_opcao: "A definir",
             acesso_internet: "A definir",
             status: "Cursando",
-            universidade: "Unicamp"
+            universidade: "Unicamp",
+
+            // Senha
+            senha: "12345"
         };
     
         props.base.database().ref(`usuarios/${id}`).set(userData)

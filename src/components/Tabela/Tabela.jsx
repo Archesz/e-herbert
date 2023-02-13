@@ -58,10 +58,6 @@ function formatCEP(cep) {
     return cep;
 }
 
-function openUser() {
-    return
-}
-
 function formatCel(cel) {
     // Verificar se o celular tem 11 dígitos
     if (cel.length !== 11) {
@@ -78,13 +74,14 @@ function Tabela(props) {
 
     const [usuarios, setUsuarios] = useState([]);
     const [selectedData, setSelectedData] = useState(null);
-    const [filter, setFilter] = useState({"nome": "", "curso": "", "periodo": ""})
+    const [filter, setFilter] = useState({"nome": "", "curso": "", "periodo": "", "cep": ""})
 
     function search() {
         let nome = document.querySelector("#filterName").value;
         let curso = document.querySelector("#filterCurso").value
         let periodo = document.querySelector("#filterPeriodo").value
-        setFilter({"nome": nome, "curso": curso, "periodo": periodo});
+        let cep = document.querySelector("#filterCEP").value
+        setFilter({"nome": nome, "curso": curso, "periodo": periodo, "cep": cep});
         console.log(filter)
 
     }
@@ -165,6 +162,8 @@ function Tabela(props) {
                     <option value="Tarde">Tarde</option>
                     <option value="Noite">Noite</option>
                 </select>
+
+                <input type="text" className="input-filter small" id="filterCEP" placeholder="Procure pelo CEP" onChange={search}/>
 
                 <div className='table-filters noview' id="filters">
                     <span className='filter-title'>Ordenar por: </span>

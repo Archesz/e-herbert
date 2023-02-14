@@ -1,0 +1,132 @@
+.hecomend-container{
+    width: 300px;
+    height: 180px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 4px 4px 6px black;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+
+    .hecomend-name{
+        color: #B50000;
+        font-weight: bolder;
+        font-size: 16px;
+    }
+
+    .hecomend-sub{
+        margin-top: 8px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #080808;
+    }
+
+    .recomendacoes{
+        margin-top: 12px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        gap: 10px;
+
+        .recomendacao{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0px;
+            height: 80px;
+            justify-content: center;
+            cursor: pointer;
+
+            .recomendacao-name{
+                width: 90px;
+                flex-wrap: wrap;
+                align-items: center;
+                text-align: center;
+                font-size: 14px;
+                margin-top: 8px;
+                font-weight: bold;
+                color: #080808;
+            }
+
+            .icone{
+                font-size: 24px;
+                color: #080808;
+            }
+
+            &:hover{
+
+                .icone{
+                    transition: .4s;
+                    color: #B50000;
+                }
+
+                .recomendacao-name{
+                    transition: .4s;
+                    color: #B50000;
+                }
+                
+            }
+
+        }
+    }
+}
+
+.modalTips-overlay{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); // Inicie com uma escala de 0
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px black;
+    
+    // Adicione a animação de expansão
+    animation: modal-expand 0.5s ease-out;
+    animation-fill-mode: forwards; // Mantenha o estilo final após a animação ter sido concluída
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .modalTips{
+        width: 600px;
+        height: 320px;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        .tip-name{
+            align-self: center;
+            font-weight: bolder;
+            font-size: 24px;
+        }
+
+        .tip{
+            margin-top: 20px;
+        }
+
+        .links{
+            margin-top: 20px;
+        }
+    }
+}
+
+@keyframes modal-expand {
+    from {
+      transform: translate(-50%, -50%) scale(0);
+      width: 0;
+      height: 0;
+    }
+  
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      width: 100%;
+      height: 100%;
+    }
+  }

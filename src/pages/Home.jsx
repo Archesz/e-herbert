@@ -4,6 +4,9 @@ import '../styles/home.scss'
 import {AiOutlineNotification} from 'react-icons/ai'
 import {BiMessageRounded} from 'react-icons/bi'
 import News from '../components/News/News'
+import Today from '../components/Today/Today'
+import Hecomend from '../components/Hecomend/Hecomend'
+import Overview from '../components/Overview/Overview'
 
 function Home(props) {
 
@@ -17,7 +20,7 @@ function Home(props) {
 
                 <div className='header-welcome'>
                     <h2 className='home-title'>Olá, {user.nome}</h2>
-                    <span>"Não há vantagem alguma em viver a vida correndo."</span>
+                    <span>Futuro Cientista da Computação.</span>
 
                 </div>  
 
@@ -31,7 +34,21 @@ function Home(props) {
 
             </div>
 
-            <News />
+            <div className='home-area'>
+
+                <div className='home-left'>
+
+                    <Overview name="Jovi" course={"Ciência da Computação"}/>
+
+                </div>
+
+                <div className='home-right'>
+                    <News />
+                    <Today />
+                    <Hecomend />
+                </div>
+
+            </div>
 
         </div>
 

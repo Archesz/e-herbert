@@ -13,10 +13,7 @@ function Navbar() {
             <img src={logo} className='navbar-logo' alt="Logo Herbert"/>
             
             <div className='navbar-items'>
-                <AiFillHome className="navbar-item"/>
-                <AiFillHome className="navbar-item"/>
-                <AiFillHome className="navbar-item"/>
-                <AiFillHome className="navbar-item"/>
+                <AiFillHome className="navbar-item"/>   
             </div>
 
         </div>

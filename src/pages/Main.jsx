@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar/Navbar';
 import View from '../components/View/View';
 
 import '../styles/main.scss'
 function Main() {
-
+    
+    const [page, setPage] = useState("Home")
     const objetoSerializado = localStorage.getItem("HerbertData");
 
     // Convertendo string de volta para objeto
@@ -13,9 +14,8 @@ function Main() {
     return (
         <div className='main-container'>
             
-            <Navbar />
-
-            <View data={objeto} page="Home"/>
+            <Navbar setState={setPage} page={page}/>
+            <View data={objeto} page={page} setState={setPage}/>
 
         </div>
     )

@@ -1,8 +1,8 @@
 import React from 'react'
 import '../styles/home.scss'
 
-import {AiOutlineNotification} from 'react-icons/ai'
-import {BiMessageRounded} from 'react-icons/bi'
+// import {AiOutlineNotification} from 'react-icons/ai'
+// import {BiMessageRounded} from 'react-icons/bi'
 import News from '../components/News/News'
 import Today from '../components/Today/Today'
 import Hecomend from '../components/Hecomend/Hecomend'
@@ -10,11 +10,29 @@ import Overview from '../components/Overview/Overview'
 
 function Home(props) {
 
-    let user = props.user
+    // let user = props.user
 
     return (
 
         <div className='home-container'>
+
+            <div className='home-view'></div>
+
+            <div className='home-col'>
+                <News />
+                <Today />
+                <Hecomend />
+
+            </div>
+            
+        </div>
+
+    )
+}
+
+export default Home
+
+/*
 
             <div className='home-header'>
 
@@ -38,7 +56,7 @@ function Home(props) {
 
                 <div className='home-left'>
 
-                    <Overview name="Jovi" course={"Ciência da Computação"}/>
+                    <Overview />
 
                 </div>
 
@@ -50,9 +68,5 @@ function Home(props) {
 
             </div>
 
-        </div>
 
-    )
-}
-
-export default Home
+*/

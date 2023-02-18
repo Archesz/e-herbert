@@ -11,6 +11,7 @@
         font-size: 24px;
     }
 
+<<<<<<< HEAD
     .overview-name{
         color: white;
         font-size: 18px;
@@ -30,5 +31,65 @@
         flex-direction: row;
         gap: 30px;
         margin-bottom: 20px;
+=======
+    .overview{
+        background-color: white;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        height: 100%;
+        margin-top: 20px;
+        padding: 20px;
+        
+        .overview-left{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            border-right: 1px solid black;
+            
+            .overview-foto{
+                width: 120px;
+                height: 120px;
+                border-radius: 60px;
+                margin-top: 40px;
+                border: 2px solid black;
+            }
+
+            .overview-infos{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-top: 20px;
+                gap: 10px;
+                font-weight: bolder;
+                cursor: pointer;
+            }
+
+            .overview-sala{
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+                align-items: center;
+                gap: 10px;
+                width: 70%;
+                padding: 10px;
+                border: 2px solid black;
+                box-shadow: 4px 4px 2px black;
+                border-radius: 8px;
+                cursor: pointer;                
+            }
+
+        }
+    
+        .overview-right{
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+>>>>>>> f5ef68feee3913e6bb0572735a1dd9102bba66a6
     }
 }

@@ -17,6 +17,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Main from './pages/Main';
+import Disciplina from './pages/Disciplina';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDZc7R_-lLK9xKfa4_610JI7Izk4b831Xc",
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "/main",
     element: <Main base={firebase}/>
+  },
+  {
+    path: "/disciplina",
+    element: <Disciplina base={firebase}/>
   }
 ]);
 

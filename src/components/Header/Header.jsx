@@ -1,5 +1,6 @@
 import React from 'react'
 import './Header.scss'
+import Avatar from './Avatar'
 
 import {AiOutlineNotification} from 'react-icons/ai'
 import {BiMessageRounded} from 'react-icons/bi'
@@ -21,7 +22,7 @@ function Header(props) {
                 <AiOutlineNotification className='header-icon' />
                 <BiMessageRounded className='header-icon' />
 
-                <div className='avatar'></div>
+                <Avatar />
 
             </div>
 

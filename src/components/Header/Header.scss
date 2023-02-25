@@ -1,10 +1,12 @@
-.home-header{
+.home-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
-    .header-items{
+    padding-bottom: 4px;
+    border-bottom: 1px solid #080808;
+
+    .header-items {
         width: 150px;
         height: auto;
         display: flex;
@@ -12,30 +14,57 @@
         align-items: center;
         justify-content: space-around;
 
-        .header-icon{
-            color: white;
+        .header-icon {
+            color: #080808;
 
-            &:hover{
+            &:hover {
                 cursor: pointer;
                 opacity: .8;
             }
         }
-
-        .avatar{
-            width: 40px;
-            height: 40px;
-            background-color: lavender;
-            border-radius: 20px;
-            cursor: pointer;
-
-            &:hover{
-                transition: .3s;
-                opacity: 0.8;
-            }
-        }
     }
 
-    .header-welcome{
-        color: white;
+    .header-welcome {
+        color: #080808;
     }
+}
+
+.circle-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background-color: #080808;
+    border-radius: 20px;
+    cursor: pointer;
+
+    &:hover {
+        transition: .3s;
+        opacity: 0.8;
+    }
+}
+
+.menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.menu li {
+    padding: 16px 30px;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    background-color: #f5f5f5;
 }

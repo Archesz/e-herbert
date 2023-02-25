@@ -6,7 +6,11 @@ import '../styles/home.scss'
 import News from '../components/News/News'
 import Today from '../components/Today/Today'
 import Hecomend from '../components/Hecomend/Hecomend'
-import Overview from '../components/Overview/Overview'
+// import Overview from '../components/Overview/Overview'
+import DisciplinaIcon from '../components/DisciplinaIcon/DisciplinaIcon'
+
+import { TbMathFunction, TbDna2, TbAtom, TbMap, TbSocial, TbBook2, TbPencil, TbBook, TbCup } from 'react-icons/tb'
+import { GiBlackHoleBolas, GiDinosaurBones, GiLogicGateOr} from 'react-icons/gi'
 
 function Home(props) {
 
@@ -16,9 +20,31 @@ function Home(props) {
 
         <div className='home-container'>
 
-            <div className='home-view'></div>
+            <div className='home-view'>
+            
+                <span className='disciplinas-name'>Disciplinas</span>
+
+                <div className='row'>
+
+                    <DisciplinaIcon name="Matemática" icon={<TbMathFunction className='icon-disciplina' color="#ba181b"/>}/>
+                    <DisciplinaIcon name="Física" icon={<GiBlackHoleBolas className='icon-disciplina' color="#4EA699"/>}/>
+                    <DisciplinaIcon name="Química" icon={<TbAtom className='icon-disciplina' color="#2DD881"/>}/>
+                    <DisciplinaIcon name="Biologia" icon={<TbDna2 className='icon-disciplina' color="#6FEDB7"/>}/>
+                    <DisciplinaIcon name="História" icon={<GiDinosaurBones className='icon-disciplina' color="#E1A95F"/>}/>
+                    <DisciplinaIcon name="Geografia" icon={<TbMap className='icon-disciplina' color="#E6A817"/>}/>
+                    <DisciplinaIcon name="Sociologia" icon={<TbSocial className='icon-disciplina' color="#FFBA00"/>}/>
+                    <DisciplinaIcon name="Filosofia" icon={<GiLogicGateOr className='icon-disciplina' color="#FFBF00"/>}/>
+                    <DisciplinaIcon name="Literatura" icon={<TbBook2 className='icon-disciplina' color="#007FFF"/>}/>
+                    <DisciplinaIcon name="Redação" icon={<TbBook className='icon-disciplina' color="#89CFF0"/>}/>
+                    <DisciplinaIcon name="Gramática" icon={<TbPencil className='icon-disciplina' color="#318CE7"/>}/>
+                    <DisciplinaIcon name="Estudo" icon={<TbCup className='icon-disciplina' color="#DE3163"/>}/>
+
+                </div>
+
+            </div>
 
             <div className='home-col'>
+                
                 <News />
                 <Today />
                 <Hecomend />

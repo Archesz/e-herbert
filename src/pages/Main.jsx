@@ -10,7 +10,7 @@ function Main() {
 
     // Convertendo string de volta para objeto
     const objeto = JSON.parse(objetoSerializado)[0];
-    console.log(objeto)
+
     return (
         <div className='main-container'>
             

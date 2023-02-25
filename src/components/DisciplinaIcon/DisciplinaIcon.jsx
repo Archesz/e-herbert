@@ -1,13 +1,15 @@
 import React from 'react'
 import './DisciplinaIcon.scss'
 
+function goTo(){
+    window.location.assign("./disciplina")
+}
+
 function DisciplinaIcon(props){
     return (
-        <div className='icon-container' onClick={props.onClick}>
+        <div className='icon-container' onClick={goTo}>
             
-            <div className='icon'>
-                {props.icon}
-            </div>
+            {props.icon}
 
             <span className='icon-name'>{props.name}</span>
         </div>

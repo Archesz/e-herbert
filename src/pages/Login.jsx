@@ -46,6 +46,8 @@ function Login(props) {
 
                 <button className='btn-login' onClick={login}>Acessar</button>
 
+                <span className='login-phrase'>Fase de testes</span>
+
             </div>
 
         </div>

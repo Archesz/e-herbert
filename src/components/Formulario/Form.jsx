@@ -29,7 +29,8 @@ function Form(props) {
 
         let id = createId();
     
-        let nome = document.querySelector("#nome").value
+        let primeiroNome = document.querySelector("#firstNome").value
+        let sobrenome = document.querySelector("#sobrenome").value
         let nascimento = document.querySelector("#nascimento").value
         let rg = document.querySelector("#rg").value
         let cpf = document.querySelector("#cpf").value
@@ -39,53 +40,119 @@ function Form(props) {
         let celular = document.querySelector("#celular").value
         let curso = document.querySelector("#curso").value
         let periodo = document.querySelector("#periodo").value
-    
-        const userData = {
-    
-            // Dados Formulário
-            id: id,
-            nome: nome,
-            email: email,
-            celular: celular,
-            cpf: cpf,
-            rg: rg,
-            curso: curso,
-            periodo: periodo,
-            cep: cep,
-            numero: numero,
-            nascimento: nascimento,
-    
-            // Dados de Desempenho
-            desempenho: {
-                "Matematica": { "Tempo_Questao": [], "Nota": 0, "Nome": "Matematica", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Português": { "Tempo_Questao": [], "Nota": 0, "Nome": "Português", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Quimica": { "Tempo_Questao": [], "Nota": 0, "Nome": "Quimica", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Fisica": { "Tempo_Questao": [], "Nota": 0, "Nome": "Fisica", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Biologia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Biologia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Geografia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Geografia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "História": { "Tempo_Questao": [], "Nota": 0, "Nome": "História", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Sociologia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Sociologia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Filosofia": { "Tempo_Questao": [], "Nota": 0, "Nome": "Filosofia", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0},
-                "Literatura": { "Tempo_Questao": [], "Nota": 0, "Nome": "Literatura", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0 },
-                "Geral": { "Tempo_Questao": [], "Nota": 0, "Nome": "Geral", "Nota_simulado": 0, "Nota_herbert": 0, "Nivel": 0 }
-            },
-    
-            // Dados Cursinho
-            sala: "A definir",
-    
-            // Dados Socioeconomicos
-            genero: "A definir",
-            etnia: "A definir",
-            escolaridade: "A definir",
-            tipo_escola: "A definir",
-            primeira_opcao: "A definir",
-            acesso_internet: "A definir",
-            status: "Cursando",
-            universidade: "Unicamp",
+        let turma = document.querySelector("#turma").value
 
-            // Senha
-            senha: "12345"
-        };
+        const userData = {
+            "ID": id,
+            "Apelido": "",
+            "Area": "",
+            "CEP": cep,
+            "Numero": numero,
+            "Celular": celular,
+            "Curso": curso,
+            "Desempenho": {
+              "Biologia": {
+                "Nivel": 0,
+                "Nome": "Biologia",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Filosofia": {
+                "Nivel": 0,
+                "Nome": "Filosofia",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Fisica": {
+                "Nivel": 0,
+                "Nome": "Fisica",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Geografia": {
+                "Nivel": 0,
+                "Nome": "Geografia",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Geral": {
+                "Nivel": 0,
+                "Nome": "Geral",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "História": {
+                "Nivel": 0,
+                "Nome": "História",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Literatura": {
+                "Nivel": 0,
+                "Nome": "Literatura",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Matematica": {
+                "Nivel": 0,
+                "Nome": "Matematica",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Português": {
+                "Nivel": 0,
+                "Nome": "Português",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Quimica": {
+                "Nivel": 0,
+                "Nome": "Quimica",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              },
+              "Sociologia": {
+                "Nivel": 0,
+                "Nome": "Sociologia",
+                "Nota": 0,
+                "Nota_herbert": 0,
+                "Nota_simulado": 0
+              }
+            },
+            "Email": email,
+            "Idade": "",
+            "Conquistas": [
+              {"Nome": "Pioneiro", "Label": "Sou da primeira turma da plataforma!"}, 
+            ],
+            "Nascimento": nascimento,
+            "Primeira Opção": "",
+            "Nivel": "Estudante",
+            "Periodo": periodo,
+            "Primeiro Nome": primeiroNome,
+            "RG": rg,
+            "CPF": cpf,
+            "Senha": cpf,
+            "Sobrenome": sobrenome,
+            "Status": "Estudando",
+            "Turma": turma,
+            "URLFoto": "",
+            "Universidade": "",
+            "Social": {
+              "Instagram": "",
+              "Twitter": "",
+              "Whatsapp": ""
+            }
+        }
     
         props.base.database().ref(`usuarios/${id}`).set(userData)
             .then(() => {
@@ -107,8 +174,13 @@ function Form(props) {
                 <div className='form-row'>
 
                     <div className='form-group'>
-                        <label className='form-label'>Nome Completo</label>
-                        <input type="text" placeholder='Ex: João Vitor Souza de Alcantara' required className='input big' id='nome' autoComplete="off" />
+                        <label className='form-label'>Primeiro Nome</label>
+                        <input type="text" placeholder='Ex: João Vitor' required className='input big' id='firstNome' autoComplete="off" />
+                    </div>
+
+                    <div className='form-group'>
+                        <label className='form-label'>Sobrenome</label>
+                        <input type="text" placeholder='Ex: Alcantara' required className='input big' id='sobrenome' autoComplete="off" />
                     </div>
 
                     <div className='form-group'>
@@ -176,6 +248,15 @@ function Form(props) {
                         </select>
                     </div>
 
+                    <div className='form-group'>
+                        <label className='form-label'>Turma</label>
+                        <select className='select half' id="turma">
+                            <option value="">A definir</option>
+                            <option value="Pixinguinha">Pixinguinha</option>
+                            <option value="Laudelina">Laudelina</option>
+                        </select>
+                    </div>
+
                 </div>
 
 
@@ -183,8 +264,6 @@ function Form(props) {
                     <button className='btn cadastrar' onClick={cadastrar} type="button">Cadastrar</button>
                     <button className='btn cancelar'>Cancelar</button>  
                 </div>
-
-                ASDJASDUASUHDASUHDUHAS TESTE
 
             </form>
         )

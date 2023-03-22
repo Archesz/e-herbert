@@ -218,6 +218,18 @@
 
 }
 
+.col-sobrenome{
+    font-weight: bold;
+    
+    .sobrenome{
+        font-size: 14px;
+        color: #25213B;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
 .square-col{
     width: 70px;
 }

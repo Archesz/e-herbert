@@ -151,7 +151,8 @@ function Form(props) {
               "Instagram": "",
               "Twitter": "",
               "Whatsapp": ""
-            }
+            },
+            "Level": 1
         }
     
         props.base.database().ref(`usuarios/${id}`).set(userData)

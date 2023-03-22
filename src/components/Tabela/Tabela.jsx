@@ -8,17 +8,22 @@ import Menu from '../Menu/Menu';
 
 function formatCPF(cpf) {
     // Remover pontos e hífen
-    cpf = cpf.replace(/[.-]/g, "");
+    try{
+        let newcpf = cpf.replace(/[.-]/g, "");
 
-    // Verificar se o CPF tem 11 dígitos
-    if (cpf.length !== 11) {
-        return false;
+        // Verificar se o CPF tem 11 dígitos
+        if (cpf.length !== 11) {
+            return "";
+        }
+    
+        // Adicionar pontos e hífen
+        newcpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+    
+        return newcpf;
+    } catch (error) {
+        let newcpf = ""
+        return newcpf
     }
-
-    // Adicionar pontos e hífen
-    cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-
-    return cpf;
 }
 
 function formatRG(rg) {
@@ -45,17 +50,22 @@ function calculateAge(birthDate) {
 
 function formatCEP(cep) {
     // Remover hífen
-    cep = cep.replace(/[-]/g, "");
+    try{
+        cep = cep.replace(/[-]/g, "");
 
-    // Verificar se o CEP tem 8 dígitos
-    if (cep.length !== 8) {
-        return false;
+        // Verificar se o CEP tem 8 dígitos
+        if (cep.length !== 8) {
+            return false;
+        }
+    
+        // Adicionar hífen
+        cep = cep.replace(/(\d{5})(\d{3})/, "$1-$2");
+    
+        return cep;
+    } catch (error){
+        cep = ""
+        return cep
     }
-
-    // Adicionar hífen
-    cep = cep.replace(/(\d{5})(\d{3})/, "$1-$2");
-
-    return cep;
 }
 
 function formatCel(cel) {
@@ -98,33 +108,30 @@ function Tabela(props) {
             const usuariosArray = [];
             for (let key in usuarios) {
                 usuariosArray.push({
-                    id: key,
-                    nome: usuarios[key].nome,
-                    email: usuarios[key].email,
-                    rg: usuarios[key].rg,
-                    cpf: usuarios[key].cpf,
-                    nascimento: usuarios[key].nascimento,
-                    cep: usuarios[key].cep,
-                    numero: usuarios[key].numero,
-                    curso: usuarios[key].curso,
-                    periodo: usuarios[key].periodo,
-                    genero: usuarios[key].genero,
-                    primeira_opcao: usuarios[key].primeira_opcao,
-                    sala: usuarios[key].sala,
-                    universidade: usuarios[key].universidade,
-                    celular: usuarios[key].celular,
-                    telefone: usuarios[key].telefone,
-                    desempenho: usuarios[key].desempenho,
-                    etnia: usuarios[key].etnia,
-                    internet: usuarios[key].acesso_internet,
-                    tipo_escola: usuarios[key].tipo_escola,
-                    status: usuarios[key].status
+                    "ID": key,
+                    "Primeiro Nome": usuarios[key]["Primeiro Nome"],
+                    "Sobrenome": usuarios[key]["Sobrenome"],
+                    "Email": usuarios[key]["Email"],
+                    "RG": usuarios[key]["RG"],
+                    "CPF": usuarios[key]["CPF"],
+                    "Nascimento": usuarios[key]["Nascimento"],
+                    "CEP": usuarios[key]["CEP"],
+                    "Número": usuarios[key]["Número"],
+                    "Curso": usuarios[key]["Curso"],
+                    "Periodo": usuarios[key]["Periodo"],
+                    "Gênero": usuarios[key]["Gênero"],
+                    "Primeira_opcao": usuarios[key]["Primeira Opção"],
+                    "Turma": usuarios[key]["Turma"],
+                    "Universidade": usuarios[key]["Universidade"],
+                    "Celular": usuarios[key]["Celular"],
+                    "Desempenho": usuarios[key]["Desempenho"],
+                    "Status": usuarios[key]["Status"]
                 });
             }
             console.log(usuariosArray)
             setUsuarios(usuariosArray);
         });
-    });
+    }, []);
 
     return (
         <div className='table-container'>
@@ -195,6 +202,7 @@ function Tabela(props) {
                         <td><div className='table-square' /></td>
                         <td>ID</td>
                         <td>Nome</td>
+                        <td>Sobrenome</td>
                         <td>CPF</td>
                         <td>Curso</td>
                         <td>Nascimento</td>
@@ -207,29 +215,31 @@ function Tabela(props) {
                 <tbody className='table-body'>
                     {usuarios.map((usuario) => {
 
-                        if (usuario["nome"].toUpperCase().includes(filter["nome"].toUpperCase()) && 
-                            usuario["curso"].toUpperCase().includes(filter["curso"].toUpperCase()) && 
-                            usuario["periodo"].includes(filter["periodo"])){
-
                             return (
                                 <tr onClick={() => { handleRowClick(usuario) }}>
                                     <td className='square-col'><div className='table-square' /></td>
-                                    <td className='id-col'>{usuario["id"]}</td>
+                                    <td className='id-col'>{usuario["ID"]}</td>
+
                                     <td className='name-col'>
-                                        <span className='name'>{usuario["nome"]}</span>
-                                        <span className='email'>{usuario["email"]}</span>
+                                        <span className='name'>{usuario["Primeiro Nome"]}</span>
+                                        <span className='email'>{usuario["Email"]}</span>
                                     </td>
-                                    <td className='cpf-col'>{formatCPF(usuario["cpf"])}</td>
+
+                                    <td className='col-sobrenome'>
+                                        <span className='sobrenome'>{usuario["Sobrenome"]}</span>
+                                    </td>
+                                    
+                                    <td className='cpf-col'>-</td>
 
                                     <td className='curso-col'>
-                                        <span className='curso'>{usuario["curso"]}</span>
-                                        <span className='periodo'>{usuario["periodo"]}</span>
+                                        <span className='curso'>{usuario["Curso"]}</span>
+                                        <span className='periodo'>{usuario["Periodo"]}</span>
                                     </td>
 
                                     <td className='nascimento-col'>
                                         <div className='nascimento-div'>
-                                            <span className='date'>{formatDate(usuario["nascimento"])}</span>
-                                            <span className='age'>{calculateAge(usuario["nascimento"])} Anos</span>
+                                            <span className='date'>{formatDate(usuario["Nascimento"])}</span>
+                                            <span className='age'>{calculateAge(usuario["Nascimento"])} Anos</span>
                                         </div>
                                     </td>
 
@@ -238,7 +248,7 @@ function Tabela(props) {
                                     </td>
 
                                     <td className='telefone-col'>
-                                        <span className='celular'>{formatCel(usuario["celular"])}</span>
+                                        <span className='celular'>{usuario["Celular"]}</span>
                                         <span className='telefone'></span>
                                     </td>
 
@@ -254,12 +264,17 @@ function Tabela(props) {
                                     </td>
                                 </tr>
                             )
-                        
-                        }
-                        return 0
                     })}
                 </tbody>
             </table>
+
+        </div>
+    )
+}
+
+export default Tabela
+
+/*
 
             {selectedData && (
                 <Modal
@@ -287,12 +302,6 @@ function Tabela(props) {
                     onClose={() => setSelectedData(null)}
                 />
             )}
-
-        </div>
-    )
-}
-
-export default Tabela
 
 function Modal(props) {
 
@@ -481,3 +490,10 @@ function Modal(props) {
 
     );
 }
+
+
+                        if (usuario["nome"].toUpperCase().includes(filter["nome"].toUpperCase()) && 
+                            usuario["curso"].toUpperCase().includes(filter["curso"].toUpperCase()) && 
+                            usuario["periodo"].includes(filter["periodo"])){
+
+*/

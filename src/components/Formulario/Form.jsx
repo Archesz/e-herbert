@@ -173,8 +173,9 @@ function Form(props) {
             .catch((error) => {
                 console.log("Erro ao adicionar usuário: ", error)
             })
-
-        // window.location.reload();
+        
+        alert("Cadastrado com Sucesso")
+        window.location.reload();
         // generatePDF(nome, nascimento, rg, cpf, email, cep, numero, telefone, celular, curso, periodo);
     }
 

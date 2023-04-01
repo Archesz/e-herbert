@@ -245,6 +245,7 @@ function Form(props) {
                         <label className='form-label'>Curso</label>
                         <select className='select half' id="curso">
                             <option value="A definir">A definir</option>
+                            <option value="Concurso">Pré-Concurso</option>
                             <option value="Vestibular">Pré-Vestibular</option>
                             <option value="Técnico">Pré-Tecnico</option>
                         </select>

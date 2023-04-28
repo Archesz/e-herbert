@@ -40,21 +40,23 @@ function Form(props) {
     function cadastrar() {
 
         let id = createId();
-        let primeiroNome = document.querySelector("#firstNome").value
-        let sobrenome = document.querySelector("#sobrenome").value
-        let nascimento = document.querySelector("#nascimento").value
-        let rg = document.querySelector("#rg").value
+        
+        let primeiroNome = ""
+        let sobrenome = ""
+        let nascimento = ""
+        let rg = ""
         let cpf = document.querySelector("#cpf").value
-        let email = document.querySelector("#email").value
-        let cep = document.querySelector("#cep").value
-        let numero = document.querySelector("#numero").value
-        let celular = document.querySelector("#celular").value
-        let curso = document.querySelector("#curso").value
-        let periodo = document.querySelector("#periodo").value
-        let turma = document.querySelector("#turma").value
+        let email = ""
+        let cep = ""
+        let numero = ""
+        let celular = ""
+        let curso = ""
+        let periodo = ""
+        let turma = ""
 
         const userData = {
             "ID": id,
+            "Complete": false,  
             "Apelido": "",
             "Area": "",
             "CEP": cep,
@@ -187,90 +189,9 @@ function Form(props) {
                 <div className='form-row'>
 
                     <div className='form-group'>
-                        <label className='form-label'>Primeiro Nome</label>
-                        <input type="text" placeholder='Ex: João Vitor' required className='input big' id='firstNome' autoComplete="off" />
-                    </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Sobrenome</label>
-                        <input type="text" placeholder='Ex: Alcantara' required className='input big' id='sobrenome' autoComplete="off" />
-                    </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Email</label>
-                        <input type="email" placeholder='Ex: cursinhoherbert@gmail.com' required className='input big' id='email' autoComplete="off" />
-                    </div>
-
-                </div>
-
-                <div className='form-row'>
-
-                    <div className='form-group'>
                         <label className='form-label'>CPF</label>
                         <input type="text" placeholder='Ex: 230.720.428-88' required id="cpf" className='input half' autoComplete="off" />
                     </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>RG</label>
-                        <input type="text" placeholder='Ex: 11.222.333-4' required className='input half' id="rg" autoComplete="off" />
-                    </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Data de Nascimento</label>
-                        <input type="date" required className='input half' id="nascimento" />
-                    </div>
-
-                </div>
-
-                <div className='form-row'>
-
-                    <div className='form-group'>
-                        <label className='form-label'>CEP</label>
-                        <input type="number" placeholder='Ex: 13060-492' required className='input half' id="cep" autoComplete="off" />
-                    </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Nº</label>
-                        <input type="number" placeholder='Ex: 17' required className='input small' id="numero" autoComplete="off" />
-                    </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Celular</label>
-                        <input type="text" placeholder='Ex: (19) 99539-7660' required className='input half' id="celular" autoComplete="off" />
-                    </div>
-                </div>
-
-                <div className='form-row'>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Curso</label>
-                        <select className='select half' id="curso">
-                            <option value="A definir">A definir</option>
-                            <option value="Concurso">Pré-Concurso</option>
-                            <option value="Vestibular">Pré-Vestibular</option>
-                            <option value="Técnico">Pré-Tecnico</option>
-                        </select>
-                    </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Periodo</label>
-                        <select className='select half' id="periodo">
-                            <option value="">A definir</option>
-                            <option value="Manhã">Manhã</option>
-                            <option value="Tarde">Tarde</option>
-                            <option value="Noite">Noite</option>
-                        </select>
-                    </div>
-
-                    <div className='form-group'>
-                        <label className='form-label'>Turma</label>
-                        <select className='select half' id="turma">
-                            <option value="">A definir</option>
-                            <option value="Pixinguinha">Pixinguinha</option>
-                            <option value="Laudelina">Laudelina</option>
-                        </select>
-                    </div>
-
                 </div>
 
 

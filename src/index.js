@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 import Main from './pages/Main';
 import Disciplina from './pages/Disciplina';
+import Admin from './pages/Admin';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDZc7R_-lLK9xKfa4_610JI7Izk4b831Xc",
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
   {
     path: "/plataforma",
     element: <Menu />
+  },
+  {
+    path: "/admin",
+    element: <Admin base={firebase} page="cadastrarMateria"/>
+  },
+  {
+    path: "Questoes",
+    element: <Admin base={firebase} page="cadastrarQuestoes"/>
   },
   {
     path: "/formulario",

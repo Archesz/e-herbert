@@ -41,7 +41,7 @@ function Form(props) {
 
         let id = createId();
         
-        let primeiroNome = ""
+        let primeiroNome = document.querySelector("#nome").value
         let sobrenome = ""
         let nascimento = ""
         let rg = ""
@@ -188,6 +188,12 @@ function Form(props) {
 
                 <div className='form-row'>
 
+            
+                    <div className='form-group'>
+                        <label className='form-label'>Nome</label>
+                        <input type="text" placeholder='Ex: João Vitor' required id="nome" className='input half' autoComplete="off" />
+                    </div>
+            
                     <div className='form-group'>
                         <label className='form-label'>CPF</label>
                         <input type="text" placeholder='Ex: 230.720.428-88' required id="cpf" className='input half' autoComplete="off" />

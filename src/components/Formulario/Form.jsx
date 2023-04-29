@@ -191,7 +191,7 @@ function Form(props) {
             
                     <div className='form-group'>
                         <label className='form-label'>Nome</label>
-                        <input type="text" placeholder='Ex: João Vitor' required id="nome" className='input half' autoComplete="off" />
+                        <input type="text" placeholder='Ex: João Vitor' required id="nome" className='input medium' autoComplete="off" />
                     </div>
             
                     <div className='form-group'>

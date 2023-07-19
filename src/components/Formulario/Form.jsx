@@ -52,7 +52,7 @@ function Form(props) {
         let celular = ""
         let curso = "Vestibular"
         let periodo = document.querySelector("#periodo").value
-        let turma = "Vestobiçar"
+        let turma = "Vestibular"
 
         const userData = {
             "ID": id,

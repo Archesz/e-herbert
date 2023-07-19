@@ -50,9 +50,9 @@ function Form(props) {
         let cep = ""
         let numero = ""
         let celular = ""
-        let curso = ""
-        let periodo = ""
-        let turma = ""
+        let curso = "Vestibular"
+        let periodo = document.querySelector("#periodo").value
+        let turma = "Vestobiçar"
 
         const userData = {
             "ID": id,
@@ -158,7 +158,7 @@ function Form(props) {
             "Sobrenome": sobrenome,
             "Status": "Estudando",
             "Turma": turma,
-            "URLFoto": "",
+            "URLFoto": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
             "Universidade": "",
             "Social": {
                 "Instagram": "",
@@ -197,6 +197,15 @@ function Form(props) {
                     <div className='form-group'>
                         <label className='form-label'>CPF</label>
                         <input type="text" placeholder='Ex: 230.720.428-88' required id="cpf" className='input half' autoComplete="off" />
+                    </div>
+
+                    <div className='form-group'>
+                        <label className='form-label'>Período</label>
+                        <select id="periodo">
+                            <option value="Manhã">Manhã</option>
+                            <option value="Manhã">Tarde</option>
+                            <option value="Manhã">Noite</option>
+                        </select>
                     </div>
                 </div>
 
